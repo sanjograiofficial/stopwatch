@@ -24,10 +24,32 @@ function updateDisplay(h0, h1, m0, m1, s0, s1) {
 }
 
 function timeUp() {
+    if (interval) return;
     interval = setInterval(() => {
         time.s1++;
-        if (time.s1 == 5 && time.s1 > 9) {
+        if (time.s0 == 5 && time.s1 > 9) {
             time.m1++;
+            time.s0 = 0;
+            time.s1 = 0;
+        }
+        if (time.m0 == 5 && time.m1 > 9) {
+            time.h1++;
+            time.m0 = 0;
+            time.m1 = 0;
+            time.s0 = 0;
+            time.s1 = 0;
+        }
+        if (time.m1 > 9) {
+            time.m0++;
+            time.m1 = 0;
+            time.s0 = 0;
+            time.s1 = 0;
+        }
+        if (time.h1 > 9) {
+            time.h0++;
+            time.h1 = 0;
+            time.m0 = 0;
+            time.m1 = 0;
             time.s0 = 0;
             time.s1 = 0;
         }
